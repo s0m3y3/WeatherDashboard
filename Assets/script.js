@@ -1,29 +1,21 @@
 let cityname, latitude, longitude = "";
 let cityInput = document.getElementById("cityinput");
 const searchcity = document.getElementById('btn-primary'); 
-let searchhistory = []; //array of search history. 
 let APIkey = "40c69ea1d7b0101e5044f901e840aebc";
+let searchhistory = []; //array of search history. 
 
 todayEl = document.getElementById("today");
 date1El = document.getElementById("date1");
 // date1E2 = document.getElementById("date2");// date1E3 = document.getElementById("date3");// date1E4 = document.getElementById("date4");// date1E5 = document.getElementById("date5");
 //run for loop?? 
 
-// fetch(weatherAPI,)  //need work
-//   .then(function (response) {
-//     return response.json();
-//   })
-//   .then(function (data) {
-//     console.log(data);
-// });
 
-//set today's date. 
-today = dayjs();
-$('#todaydate').text(dayjs().format('MMMM DD'));
+today = dayjs(); //set today's date. 
+$('#todaydate').text(dayjs().format('MMMM DD')); //input today's date in format, MMMM,DD or "July 01"
 
-let kelvin2fahrenheit = function (kelvin){return((kelvin-273.15)*9/5+32)}; //converts kelvin to fahrenheit
+function kelvin2fahrenheit (kelvin){return((kelvin-273.15)*9/5+32)}; //converts kelvin to fahrenheit
 
-let getweatherforcast = function(){
+function getweatherforcast(){
   if(cityname != ""){ //if cityinput is not blank, run get lat/lon of city name. 
   let geocodingAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${cityname}&appid=${APIkey}`;
 
@@ -32,28 +24,20 @@ let getweatherforcast = function(){
     return response.json();
     })
     .then(function(data){
-      console.log(data);
       longitude = data[0].lon;
       latitude = data[0].lat;
-      console.log(longitude + " lon&lat " + latitude); //delete me
-      setweatherforcast();
+      setweatherforcast(); //using longitude & latitude above, search for weather API for info. 
     })
   }
-  else{
-    alert("No city input. Please try again");  //to do: convert this to modal.
+  else{ //else, city is empty, and alert user. 
+    alert("No city input. Please try again");  //to-do: convert this to modal.
     return;
   }
 };
 
-// document.getElementById("temperature").textContent = data.main.temp.toFixed(0);
-// data.list[i].main.temp_max.toFixed(0);
-// data.list[i].main.temp_min.toFixed(0);
-// data.list[i].main.humidity;
-
-let setweatherforcast = function(){
+function setweatherforcast (){
   //code weekly grab
   //update search histoy.
-  //get uv-index
 
   let weatherAPI = `api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${APIkey}`;
   fetch(weatherAPI)
@@ -62,16 +46,30 @@ let setweatherforcast = function(){
     })
     .then(function(data){
       console.log(data);
+//insert loop code here. 
 
     })
-  
+  l
 };
+
+//needs work. 
+function searchhistoryfunction (cityname){
+   searchhistory = JSON.parse(localStorage.getItem("cities"));
+   if (searchhistory !=""){
+    searchhistory.push(cityname);
+    searchhistory.JSON.stringify(localStorage.setItem("cities"));
+   }
+   else{
+    cityname.JSON.stringify(localStorage.setItem("cities"));
+   }
+}
 
 $('.btn-primary').click(function(){
   //Below grabs clicked-btn hour and text and store in local. 
   cityname = $('#cityinput').val(); 
-  console.log("city name: "+cityname);
-  getweatherforcast();
+  // console.log("city name: "+cityname);
+  
+  // getweatherforcast();
 });
 
 
@@ -1580,7 +1578,7 @@ let urlicon = `https://openweathermap.org/img/wn/${iconid}`;
 
 // for(i=0;i<41; i+=8 ){
 //   console.log("This is: "+i);
-//    console.log(data1.list[i].dt_txt);
+  //  console.log(data1.list[i].dt_txt);
 //   console.log(data1.list[i].main.temp);
 //   console.log(data1.list[i].weather.icon);
   // $('#date1').val(data1.list[i].weather.icon)
@@ -1599,7 +1597,7 @@ let urlicon = `https://openweathermap.org/img/wn/${iconid}`;
 // WHEN I search for a city
 // THEN I am presented with current and future conditions for that city and that city is added to the search history
 // WHEN I view current weather conditions for that city
-// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
+// THEN I am presented with athe city name, the dte, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
 // WHEN I view future weather conditions for that city
 // THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
 // WHEN I click on a city in the search history
