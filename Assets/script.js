@@ -54,11 +54,11 @@ function setweatherforcast (){
     let urlicon = `https://openweathermap.org/img/wn/${iconid}.png`;
 	$('#dateforcast'+index).append(`<img src='${urlicon}'>`);
     //first convert temperature, then insert into html
-    $('#dateforcast'+index).append("<p> Temp: "+kelvin2fahrenheit(data1.list[i].main.temp_min)+"F </p>");
+    $('#dateforcast'+index).append("<p> Temp: "+kelvin2fahrenheit(data.list[i].main.temp_min)+"F </p>");
     //insert wind speed into html
-    $('#dateforcast'+index).append("<p> Wind: "+data1.list[i].wind.speed+" MPH </p>");
+    $('#dateforcast'+index).append("<p> Wind: "+data.list[i].wind.speed+" MPH </p>");
     //insert humidity into html
-    $('#dateforcast'+index).append("<p> Humidity: "+data1.list[i].main.humidity+" % </p>");
+    $('#dateforcast'+index).append("<p> Humidity: "+data.list[i].main.humidity+" % </p>");
     }
   })
 };
@@ -74,36 +74,30 @@ function saveToLocalStorage(searchQuery) {
     }
     // Save the updated search history to local storage
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-  }
+}
 
 // Function to display the search history on the page
 function displaySearchHistory() {
-let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
-let historyList = document.getElementById('historyList');
-// Clear the existing history list
-historyList.innerHTML = '';
-// Loop through the search history and create list items to display
-for (const query of searchHistory) {
-	const listItem = document.createElement('p');
-	listItem.textContent = query;
-	historyList.appendChild(listItem);
-}
+	let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+	let historyList = document.getElementById('historyList');
+	// Clear the existing history list
+	historyList.innerHTML = '';
+	// Loop through the search history and create list items to display
+	for (const query of searchHistory) {
+		const listItem = document.createElement('p');
+		listItem.textContent = query;
+		historyList.appendChild(listItem);
+	}
 }
 displaySearchHistory(); 
 
 
 $('.btn-primary').click(function(){
-  //Below grabs clicked-btn hour and text and store in local. 
-  cityname = $('#cityinput').val(); 
-
-
-  console.log("city name: "+cityname);
-  
+  cityname = $('#cityinput').val();   
   getweatherforcast();
 });
 
 
-// delete later
 // delete later
 //test code lines below; 
 Minneapolis = {	//weather api info for Minneapolis. Set as default? 
@@ -114,12 +108,7 @@ Minneapolis = {	//weather api info for Minneapolis. Set as default?
   "state": "Minnesota"
 }
 
-// GIVEN a weather dashboard with form inputs
-// WHEN I search for a city
-// THEN I am presented with current and future conditions for that city and that city is added to the search history
-// WHEN I view current weather conditions for that city
-// THEN I am presented with athe city name, the dte, an icon representation of weather conditions, the temperature, the humidity, and the wind speed
-// WHEN I view future weather conditions for that city
-// THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
+//to-do: 
+//Remove repeated search results. 
 // WHEN I click on a city in the search history
-// THEN I am again presented with current and future conditions for that city
+//// THEN I am again presented with current and future conditions for that city
