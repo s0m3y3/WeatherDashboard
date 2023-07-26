@@ -4,16 +4,7 @@ const searchcity = document.getElementById('btn-primary');
 let APIkey = "40c69ea1d7b0101e5044f901e840aebc";
 let searchhistory = []; //array of search history. 
 
-todayEl = document.getElementById("today");
-date1El = document.getElementById("date1");
-// date1E2 = document.getElementById("date2");// date1E3 = document.getElementById("date3");// date1E4 = document.getElementById("date4");// date1E5 = document.getElementById("date5");
-//run for loop?? 
-
-
-today = dayjs(); //set today's date. 
-$('#todaydate').text(dayjs().format('MMMM DD')); //input today's date in format, MMMM,DD or "July 01"
-
-function kelvin2fahrenheit (kelvin){return((kelvin-273.15)*9/5+32)}; //converts kelvin to fahrenheit
+function kelvin2fahrenheit (kelvin){return(Math.round((kelvin-273.15)*9/5+32))}; //converts kelvin to fahrenheit
 
 function getweatherforcast(){
   if(cityname != ""){ //if cityinput is not blank, run get lat/lon of city name. 
@@ -29,7 +20,7 @@ function getweatherforcast(){
       setweatherforcast(); //using longitude & latitude above, search for weather API for info. 
     })
   }
-  else{ //else, city is empty, and alert user. 
+  else{ //else, if 'city' is empty, and alert user. return function. 
     alert("No city input. Please try again");  //to-do: convert this to modal.
     return;
   }
@@ -39,6 +30,7 @@ function setweatherforcast (){
   //code weekly grab
   //update search histoy.
 
+  //grabs weather API data. The coordinates are within the function of getweatherforcast. As this function will remain a sub-function. 
   let weatherAPI = `api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${APIkey}`;
   fetch(weatherAPI)
     .then(function (response) {
@@ -48,28 +40,64 @@ function setweatherforcast (){
       console.log(data);
 //insert loop code here. 
 
-    })
-  l
+  for(i=0;i<41; i+=8 ){
+    console.log("This is: "+i);
+    console.log(data.list[i].dt_txt);
+    // console.log(data1.list[i].main.temp);
+    // console.log(data1.list[i].weather.icon);
+    console.log(data.list[i].main.temp_min);
+    console.log(data.list[i].main.temp_max);
+    // console.log(data1.list[i].wind.speed);
+    // console.log(data1.list[i].main.humidity);
+
+    //below to input sorted data into html
+    if(i=0){
+
+
+    }
+    else {
+      index = i/8;
+      console.log("index is: "+ index);
+
+      $('#date'+index).text(dayjs(data.list[i].dt_txt).format('MMMM DD'));
+
+
+      //Below insert weather icon in html
+      iconid =data.list[i].weather[0].icon
+      let urlicon = `https://openweathermap.org/img/wn/${iconid}.png`;
+      $(`<img src='${urlicon}'>`).appendTo('#date1');
+      //insert temp in html, based on day
+      $('#dateforcast'+index).append("<p> Temp: "+kelvin2fahrenheit(data1.list[i].main.temp_min)+"F </p>");
+      //insert wind speed, based on day
+      $('#dateforcast'+index).append("<p> Wind: "+data1.list[i].wind.speed+" MPH </p>");
+      //insert humidity, based on day. 
+      $('#dateforcast'+index).append("<p> Humidity: "+data1.list[i].main.humidity+" % </p>");
+
+
+     }
+    }
+  })
 };
 
+
 //needs work. 
-function searchhistoryfunction (cityname){
-   searchhistory = JSON.parse(localStorage.getItem("cities"));
-   if (searchhistory !=""){
-    searchhistory.push(cityname);
-    searchhistory.JSON.stringify(localStorage.setItem("cities"));
-   }
-   else{
-    cityname.JSON.stringify(localStorage.setItem("cities"));
-   }
-}
+// function searchhistoryfunction (cityname){
+//    searchhistory = JSON.parse(localStorage.getItem("cities"));
+//    if (searchhistory !=""){
+//     searchhistory.push(cityname);
+//     searchhistory.JSON.stringify(localStorage.setItem("cities"));
+//    }
+//    else{
+//     cityname.JSON.stringify(localStorage.setItem("cities"));
+//    }
+// }
 
 $('.btn-primary').click(function(){
   //Below grabs clicked-btn hour and text and store in local. 
   cityname = $('#cityinput').val(); 
   // console.log("city name: "+cityname);
   
-  // getweatherforcast();
+  getweatherforcast();
 });
 
 
@@ -1569,29 +1597,38 @@ data1 = {
 // console.log(data1.list[8].main.temp_min);
 // console.log(data1.list[8].main.temp_max);
 // console.log(data1.list[8].wind.speed);
-// console.log(data1.list[8].main.humidity);      
+// console.log(data1.list[8].main.humidity);
 
-console.log(data1.list[0].weather[0].icon);
-iconid =data1.list[0].weather[0].icon
-let urlicon = `https://openweathermap.org/img/wn/${iconid}`;
-  $('#date1').val(urlicon)
+// abc = dayjs(data1.list[8].dt_txt).format('MMM DD');
+// console.log("dayjs1: "+ abc);     
+// $('#date2').text(abc); 
 
-// for(i=0;i<41; i+=8 ){
+
+// for(i=0;i<41; i+=7 ){
 //   console.log("This is: "+i);
-  //  console.log(data1.list[i].dt_txt);
+//   // console.log(data1.list[i].dt_txt);
 //   console.log(data1.list[i].main.temp);
-//   console.log(data1.list[i].weather.icon);
-  // $('#date1').val(data1.list[i].weather.icon)
-  // console.log(data1.list[i].main.temp_min);
-  // console.log(data1.list[i].main.temp_max);
-  // console.log(data1.list[i].wind.speed);
-  // console.log(data1.list[i].main.humidity);   
+//   // console.log(data1.list[i].weather.icon);
+//   // console.log(data1.list[i].main.temp_min);
+//   // console.log(data1.list[i].main.temp_max);
+//   console.log(data1.list[i].wind.speed);
+//   console.log(data1.list[i].main.humidity);   
+
+//   index = i/7;
+//   iconid =data1.list[i].weather[0].icon
+//   let urlicon = `https://openweathermap.org/img/wn/${iconid}.png`;
+//   $(`<img src='${urlicon}'>`).appendTo('#date'+index);
+//   // $('#dateforcast'+index).text(kelvin2fahrenheit(data1.list[i].main.temp)+"F");
+//   $('#dateforcast'+index).append("<img src="+urlicon+"</img>");
+//   $('#dateforcast'+index).append("<p> Temp: "+kelvin2fahrenheit(data1.list[i].main.temp_min)+"F </p>");
+//   $('#dateforcast'+index).append("<p> Wind: "+data1.list[i].wind.speed+" MPH </p>");
+//   $('#dateforcast'+index).append("<p> Humidity: "+data1.list[i].main.humidity+" % </p>");
+//   // $('#dateforcast'+index).text(kelvin2fahrenheit(data1.list[i].main.temp_min)+"F");
+//   // $(`<p src='${urlicon}'>`).appendTo('#date'+index);
+
+//   // date DONE
+//   $('#date'+index).text(dayjs(data1.list[i].dt_txt).format('MMMM DD')); 
 // }
-
-// below grabs temp
-// data1.list[0].main.temp 
-
-
 
 // GIVEN a weather dashboard with form inputs
 // WHEN I search for a city
@@ -1602,4 +1639,3 @@ let urlicon = `https://openweathermap.org/img/wn/${iconid}`;
 // THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity
 // WHEN I click on a city in the search history
 // THEN I am again presented with current and future conditions for that city
-
