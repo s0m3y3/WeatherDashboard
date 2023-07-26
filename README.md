@@ -5,7 +5,7 @@ A simple Weather App. Search for a city, and it outputs temperature (min & max),
 
 ## Installation
 
-N/A
+N/A. Accessible via website. 
 
 ## Usage
 
@@ -13,7 +13,7 @@ If you are traveling and wanting to know  a quick weather overview of the city, 
 
 ## Credits
 
-API of weather and geocode from: https://openweathermap.org/weather-conditions
+API from openweathermap, for their weather and geocode data. (https://openweathermap.org/weather-conditions)
 
 ## License
 Please refer to the LICENSE in the repo
