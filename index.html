@@ -12,21 +12,26 @@
 
 <body>
   <header class="p-3 mb-3">
-    <h1 class="container"> Weather Dashboard 
+    <h1 class="container"> Weather Dashboard
     </h1>
   </header>
 
-<section type="row">
+<section type="row" class = "container">
   <div class="mb-3">
-    <label for="cityinput" class="form-label "> Search for a City: </label>
+    <h2>
+      <label for="cityinput" class="form-label "> Search for a City: </label>
+    </h2>
     <input type="text" class="form-control" id="cityinput" placeholder="San Diego">
-    <button type="button" class="btn btn-primary m-3">Search</button>
-  </div>
-  <div class="card col-12 col-md-6 col-lg-4 text-center">
-      <h2 class="card-header " id="date0">todaydate0</h2>
-      <p class="card-text m-3" id="dateforcast0"></p>
+    <p id="error-text"></p>
+    <button type="button" class="btn btn-lg btn-primary m-3 mx-auto">Search</button>
   </div>
 </section>
+
+<div class="card text-center container my-3">
+  <h2 id="city_display">cityname</h2>
+  <h2 class="card-header " id="date0">Today</h2>
+  <p class="card-text m-3" id="dateforcast0"></p>
+</div>
 
   <main class="container my-3">
     <section class="row">
@@ -34,7 +39,7 @@
         <h2>Five Day Forcast: </h2>
 
         <section class="row">  
-          
+         
           <div class="col-12 col-md-6 col-lg-4">
             <div class="card">
               <h3 class="card-header" id="date1">Date1</h3>
@@ -79,25 +84,28 @@
               </div>
             </div>
           </div>
-        </section>
 
-        </div>
+        </section>
+      </div>
+    </section>
+
+      <section>
+        <h2>--Search History--</h2>
+        <p id="historyList"></p>
       </section>
 
-    <section id="historyList"></section>
+    </main>
 
-  </main>
-
-  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js" 
-    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" 
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
     crossorigin="anonymous">
   </script>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" 
-    
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     crossorigin="anonymous">
   </script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <script src="/Assets/script.js"></script>
 </body>
 </html>
+

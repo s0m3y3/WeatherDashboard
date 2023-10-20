@@ -1,5 +1,14 @@
 # WeatherDashboard
 
+## Table of Contents
+
+- [Description](#description)
+- [Installation](#Installation)
+- [Usage](#usage)
+- [Credits](#credits)
+- [License](#license)
+- [Contact](#contact)
+
 ## Description
 A simple Weather App. Search for a city, and it outputs temperature (min & max), humidity, and windspeed.  
 
@@ -13,15 +22,14 @@ If you are traveling and wanting to know  a quick weather overview of the city, 
 
 ## Credits
 
-API from openweathermap, for their weather and geocode data. (https://openweathermap.org/weather-conditions)
+API from [Open Weather Map](https://openweathermap.org/), for their weather and geocode data. 
 
 ## License
 Please refer to the LICENSE in the repo
 
-![image](./Assets/sample.png)
+![image](./Assets/demo.png)
 
-## Links: 
-
-github repository link: https://github.com/s0m3y3/Weather-Dashboard/tree/main
-
-website link: https://s0m3y3.github.io/Weather-Dashboard/
+## Contact: 
+Created by: s0m3y3  
+[Github Repo](https://github.com/s0m3y3/WeatherDashboard)  
+[Github live public site](https://s0m3y3.github.io/WeatherDashboard/)
