@@ -124,6 +124,12 @@ function displaySearchHistory() {
   });
 }
 
+// Clear the search history from local storage
+function deleteHistory (){
+  localStorage.removeItem('searchHistory');
+  displaySearchHistory();
+}
+
 displaySearchHistory();
 
 //this set default search to Minneapolis.If cityname is blank or at default "cityname"
@@ -136,4 +142,8 @@ if (document.getElementById('city_display').textContent === 'cityname' || docume
 $('.btn-primary').click(function(){
   cityname = $('#cityinput').val();  
   getweatherforcast();
+});
+
+$('#delete-history').click(function(){
+  deleteHistory();
 });
