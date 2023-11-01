@@ -15,16 +15,16 @@ If you are traveling and wanting to know  a quick weather overview of the destin
 A simple Weather App. Search for a "city name", and it will outputs temperature (min & max), humidity, and windspeed. In addition, it will include 5 day forcast. 
 
 ![image](./Assets/demo.png)
+![image](./Assets/responsive.png)
 
 ## Installation
 1. Pull github repo into your computer. 
 2. Get an API from [Open Weather Map](https://openweathermap.org/api)
-3. Update ".envExample" file to ".env".  
-    * Then update the API_KEY = '' to include your key: API_KEY = '(your key)'
-4. Find a server to run your App! Whether it is Local, GitHub, or any other server hosting website. 
+3. Find a server to run your App! Whether it is Local, GitHub, or any other server hosting website.  
+*NOTE: This app does not protect your API Key. 
 
 This is a [live webpage](https://s0m3y3.github.io/WeatherDashboard/)* example.  
-*NOTE: This will not be up permanently, link may be broken in the future. 
+**NOTE: This will not be up permanently, link may be broken in the future. 
 
 ## Usage
 
@@ -39,11 +39,17 @@ You can also click on Searched History, to re-load prior searched cities. NOTE: 
 API from [Open Weather Map](https://openweathermap.org/), for their data for weather and geocode. 
 
 ## License
-Please refer to the LICENSE in the repo
+  MIT License
+
+    Copyright (c) 2023, Github username: s0m3y3
+    
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+    
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## Contact: 
 Created by: s0m3y3  
 [Github Repo](https://github.com/s0m3y3/WeatherDashboard)  
 [Github live public site](https://s0m3y3.github.io/WeatherDashboard/)
 
-Last updated: 10/19/2023
+Last updated: 11/01/2023
