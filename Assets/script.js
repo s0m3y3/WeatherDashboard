@@ -1,6 +1,5 @@
 let cityname, latitude, longitude = "";
-let APIkey = "40c69ea1d7b0101e5044f901e840aebc";
-const { saveToLocalStorage, displaySearchHistory } = require('./searchedHistory');
+let APIkey = '40c69ea1d7b0101e5044f901e840aebc';
 
 //converts kelvin to fahrenheit, then rounds to whole number
 function kelvin2fahrenheit (kelvin){return(Math.round((kelvin-273.15)*9/5+32))}; 
@@ -83,11 +82,57 @@ function setweatherforcast (){
   })
 };
 
-displaySearchHistory();
-cityname = "Minneapolis"; //this is default search. 
-getweatherforcast();
+function saveToLocalStorage(searchQuery) {
+  // Get the existing search history from local storage or initialize an empty array
+  let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
 
-//click button for search to find 5-day weather forcase for the inputed city. 
+  // Check if the search query already exists in the history (case-insensitive)
+  const isDuplicate = searchHistory.some((query) => query.toLowerCase() === searchQuery.toLowerCase());
+
+  // If it's not a duplicate, add it to the history
+  if (!isDuplicate) {
+    searchHistory.push(searchQuery);
+    // Limit the search history to a certain number of items (e.g., 6)
+    const maxHistoryLength = 6;
+    if (searchHistory.length > maxHistoryLength) {
+      searchHistory = searchHistory.slice(searchHistory.length - maxHistoryLength);
+    }
+    // Save the updated search history to local storage
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+  }
+}
+
+// Function to display the search history on the page
+function displaySearchHistory() {
+  let searchHistory = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+  let historyList = document.getElementById('historyList');
+ 
+  // Clear the existing history list
+  historyList.innerHTML = '';
+
+  searchHistory.forEach(query => {
+    const listItem = document.createElement('li');
+    listItem.textContent = query;
+    listItem.classList.add('search-history-list');
+    
+    // Make the search history items clickable
+    listItem.addEventListener('click', () => {
+      cityname = listItem.textContent;
+      getweatherforcast(cityname);
+    });
+    historyList.appendChild(listItem);
+  });
+}
+
+displaySearchHistory();
+
+//this set default search to Minneapolis.If cityname is blank or at default "cityname"
+if (document.getElementById('city_display').textContent === 'cityname' || document.getElementById('city_display').textContent === null) {
+  cityname = "Minneapolis"; 
+  getweatherforcast();
+}
+
+//click button for search to find 5-day weather forcast for the inputed city. 
 $('.btn-primary').click(function(){
   cityname = $('#cityinput').val();  
   getweatherforcast();

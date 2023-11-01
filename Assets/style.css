@@ -12,10 +12,7 @@ h5 {
     font-weight: 50px;
 }
 
-
-/*
-To do: 
--search button hover
-
- 
- */
+.search-history-list:hover {
+    cursor: pointer;
+    color: #1dad59;
+  }
