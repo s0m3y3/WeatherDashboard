@@ -2,16 +2,6 @@ header {
     background-color: rgb(55, 27, 156);
 }
 
-/* h1 {
-    text-align: center;
-    color:white;
-} */
-
-h5 {
-    text-align: center;
-    font-weight: 50px;
-}
-
 .search-history-list:hover {
     cursor: pointer;
     color: #1dad59;
