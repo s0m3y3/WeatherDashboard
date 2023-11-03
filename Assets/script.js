@@ -21,7 +21,7 @@ function capitalizeWords(text) {
 function getweatherforcast(){
   if(cityname != ""){ //if cityinput is not blank, run get lat/lon of city name.
     cityname = capitalizeWords(cityname);
-  let geocodingAPI = `http://api.openweathermap.org/geo/1.0/direct?q=${cityname}&appid=${APIkey}`;
+  let geocodingAPI = `https://api.openweathermap.org/geo/1.0/direct?q=${cityname}&appid=${APIkey}`;
 
   fetch(geocodingAPI)
     .then(function (response) {
